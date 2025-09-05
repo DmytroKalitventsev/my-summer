@@ -12,14 +12,16 @@
       overflow: hidden;
     }
 
-    /* Робимо фото фоновим, щоб воно точно вписувалося */
-    body {
-      background: url('mysummer.png') no-repeat center center;
-      background-size: cover; /* Масштабує під весь екран */
+    img {
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover; /* або contain, якщо хочеш без обрізання */
+      object-position: center;
+      display: block;
     }
   </style>
 </head>
 <body>
-  <!-- Тепер фото задається через background, і завжди буде рівно по екрану -->
+  <img src="mysummer.png" alt="Fullscreen photo">
 </body>
 </html>
