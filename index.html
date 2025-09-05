@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Фото на весь екран (для телефона)</title>
+  <style>
+    /* Повністю заповнює екран без відступів */
+    html, body { height: 100%; margin: 0; background: #000; }
+
+    /* Зображення як елемент, яке завжди покриває весь вікнот (cover)
+       і зберігає співвідношення сторін. */
+    .photo {
+      display: block;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;       /* crop або zoom, щоб заповнити */
+      object-position: center center;
+    }
+
+    /* Забираємо можливість прокрутки */
+    body { overflow: hidden; }
+
+    /* Додаткові стилі для безпечного показу на різних екранах */
+    @media (orientation: landscape) {
+      /* Якщо хочете — можна показувати підказку у ландшафті, але тут нічого не показуємо */
+    }
+  </style>
+</head>
+<body>
+  <!--
+    Інструкції:
+    1) Помістіть файл з цим HTML і файл вашої фотографії в одну папку.
+    2) Замініть значення атрибуту src нижче на ім'я вашого файлу, наприклад: "phone-photo.jpg"
+    3) Відкрийте HTML у браузері — фото займе весь екран.
+
+    Якщо хочете використовувати віддалену адресу, вкажіть повний URL у src.
+  -->
+
+  <img src="mysummer.png" alt="Fullscreen photo" class="photo">
+
+</body>
+</html>
