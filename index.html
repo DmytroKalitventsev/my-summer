@@ -2,26 +2,50 @@
 <html lang="uk">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>My Summer</title>
   <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      background: #000;
-      overflow: hidden;
+    :root { --vh: 1vh; }
+    html, body { height: 100%; margin: 0; background: #000; }
+
+    /* Використовуємо реальну висоту вікна (fix для мобільних браузерів) */
+    body {
+      height: calc(var(--vh) * 100);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden; /* ніяких прокруток */
     }
 
+    /* Зображення не обрізається — цілком поміщається на екрані.
+       Якщо хочеш, щоб воно зайняло весь екран без чорних полів —
+       потрібно буде обрізати/переконвертувати сам файл під співвідношення екрану. */
     img {
-      width: 100vw;
-      height: 100vh;
-      object-fit: cover; /* або contain, якщо хочеш без обрізання */
-      object-position: center;
+      max-width: 100%;
+      max-height: 100%;
       display: block;
+      object-fit: contain; /* показує повністю, не обрізає */
+      object-position: center;
+      width: auto;
+      height: auto;
     }
   </style>
 </head>
 <body>
-  <img src="mysummer.png" alt="Fullscreen photo">
+  <!-- Замініть photo.jpg на ім'я вашої картинки -->
+  <img src="mysummer.png" alt="Фото на весь екран">
+
+  <script>
+    /* Встановлюємо CSS-перемінну --vh = 1% від видимої висоти вікна
+       — це вирішує проблему 100vh в мобільних браузерах (адресний рядок). */
+    (function(){
+      function updateVh(){
+        document.documentElement.style.setProperty('--vh', (window.innerHeight * 0.01) + 'px');
+      }
+      updateVh();
+      window.addEventListener('resize', updateVh);
+      window.addEventListener('orientationchange', function(){ setTimeout(updateVh, 200); });
+    })();
+  </script>
 </body>
 </html>
